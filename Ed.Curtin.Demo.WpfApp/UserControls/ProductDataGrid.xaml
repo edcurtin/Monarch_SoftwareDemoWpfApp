@@ -1,0 +1,26 @@
+﻿<UserControl x:Class="Ed.Curtin.Demo.WpfApp.UserControls.ProductDataGrid"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Ed.Curtin.Demo.WpfApp.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <DataGrid
+            ItemsSource="{Binding Products}" 
+            IsReadOnly="True" 
+            SelectedItem="{Binding SelectedProduct}">
+            <DataGrid.Columns>
+
+                <!--<DataGridTextColumn Header="*ProductId" Binding="{Binding ProductId}" />-->
+                <DataGridTextColumn Header="{DynamicResource SKU}" Binding="{Binding SKU }" />
+                <DataGridTextColumn Header="{DynamicResource Title}" Binding="{Binding Title }" />
+                <DataGridTextColumn Header="{DynamicResource Artist}" Binding="{Binding Artist }" />
+                <DataGridTextColumn Header="{DynamicResource FreeStock}" Binding="{Binding FreeStock }" />
+                <DataGridTextColumn Header="{DynamicResource CreatedDate}" Binding="{Binding CreatedDate }" />
+                <DataGridTextColumn Header="{DynamicResource ModifiedDate}" Binding="{Binding ModifiedDate }" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

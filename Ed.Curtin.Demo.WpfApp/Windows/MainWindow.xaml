@@ -1,0 +1,16 @@
+﻿<Window x:Class="Ed.Curtin.Demo.WpfApp.Windows.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Ed.Curtin.Demo.WpfApp"
+        xmlns:viewModels="clr-namespace:Ed.Curtin.Demo.WpfApp.ViewModels"
+        xmlns:views="clr-namespace:Ed.Curtin.Demo.WpfApp.UserControls"
+        Title="{DynamicResource ApplicationName}"
+        mc:Ignorable="d">
+    <views:WrapperMainWindow  x:Name="Wrapper">
+        <views:WrapperMainWindow.DataContext>
+            <viewModels:WrapperMainWindowViewModel/>
+        </views:WrapperMainWindow.DataContext>
+    </views:WrapperMainWindow>
+</Window>

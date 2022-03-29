@@ -1,0 +1,106 @@
+﻿<UserControl x:Class="Ed.Curtin.Demo.WpfApp.UserControls.ProductEditControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ControlTemplate x:Key="ErrorTemplate">
+            <DockPanel LastChildFill="True">
+                <Border BorderBrush="Red" BorderThickness="1">
+                    <AdornedElementPlaceholder />
+                </Border>
+            </DockPanel>
+        </ControlTemplate>
+        <Style TargetType="TextBox">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="true">
+                    <Setter Property="ToolTip" Value="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
+                    
+                </Trigger>
+
+            </Style.Triggers>
+
+        </Style>
+    </UserControl.Resources>
+    <StackPanel Orientation="Vertical" Margin="10" CanHorizontallyScroll="True" IsEnabled="{Binding IsProductEditEnabled}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+
+            <Label
+      Grid.Row="0" 
+      Content="{DynamicResource EditProduct}"
+      FontSize="16"/>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition  Width="Auto"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="0" Content="{DynamicResource ProductId}"></Label>
+                <TextBlock Grid.Row="0" VerticalAlignment="Center" Grid.Column="2"  Text="{Binding Path=ProductId}"></TextBlock>
+
+                <Label Grid.Row="1" Grid.Column="0" Content="{DynamicResource SKU}"></Label>
+                <TextBox 
+                    MaxLength="20" 
+                    Grid.Row="1" 
+                    VerticalAlignment="Center"
+                    Grid.Column="2"  
+                    Text="{Binding Path=SKU, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
+                    Validation.ErrorTemplate="{StaticResource ErrorTemplate}"
+                    ></TextBox>
+
+                <Label Grid.Row="2" Grid.Column="0"  Content="{DynamicResource Title}"></Label>
+                <TextBox CharacterCasing="Upper" MaxLength="255" VerticalAlignment="Center" Grid.Row="2" Grid.Column="2"  Text="{Binding Path=Title}"></TextBox>
+
+                <Label 
+                    Grid.Row="3" 
+                    Grid.Column="0" 
+                    Content="{DynamicResource Artist}">
+                </Label>
+                <TextBox CharacterCasing="Upper" MaxLength="255" VerticalAlignment="Center" Grid.Row="3" Grid.Column="2"  Text="{Binding Path=Artist}"></TextBox>
+
+                <Grid Grid.Row="4" Grid.Column="2" HorizontalAlignment="Stretch">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Button 
+                          Command="{Binding Path=CancelCommand}" 
+                          Content="{DynamicResource Cancel}"
+                          Margin="5,5,0,0">
+                        </Button>
+                    </Grid>
+                    <Grid Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Button 
+                          Command="{Binding Path=SaveCommand}" 
+                          Content="{DynamicResource Save}"
+                          Margin="5,5,0,0">
+                        </Button>
+                    </Grid>
+
+                </Grid>
+            </Grid>
+        </Grid>
+    </StackPanel>
+</UserControl>
