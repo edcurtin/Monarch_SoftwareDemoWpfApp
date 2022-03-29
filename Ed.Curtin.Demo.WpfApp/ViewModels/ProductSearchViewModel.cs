@@ -6,6 +6,9 @@ using System.Windows.Input;
 
 namespace Ed.Curtin.Demo.WpfApp.ViewModels
 {
+    /// <summary>
+    /// ProductSearchViewModel
+    /// </summary>
     public class ProductSearchViewModel : ViewModelBase
     {
         private IEventAggregator _eventAggregator;
